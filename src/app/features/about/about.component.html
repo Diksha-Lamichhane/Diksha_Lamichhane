@@ -1,0 +1,64 @@
+<div class="section section-alt">
+  <div class="container">
+
+    <div class="section-header" [appScrollReveal]="0">
+      <span class="section-label">Who I Am</span>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="about-grid">
+
+      <!-- ── Left: Text ─────────────────────────────────── -->
+      <div class="about-content">
+
+        @for (para of paragraphs; track $index) {
+          <p [appScrollReveal]="$index * 100">{{ para }}</p>
+        }
+
+        <div class="about-tags" [appScrollReveal]="350">
+          @for (tag of practiceTags; track tag) {
+            <span class="tech-tag">{{ tag }}</span>
+          }
+        </div>
+
+        <!-- <div class="ai-note" [appScrollReveal]="450">
+          <span class="material-icons-round ai-icon">smart_toy</span>
+          <p>
+            I actively use <strong>Claude</strong> and <strong>GitHub Copilot</strong>
+            to accelerate development and maintain high code quality.
+          </p>
+        </div> -->
+
+      </div>
+
+      <!-- ── Right: Info + Stats ────────────────────────── -->
+      <div class="about-sidebar">
+
+        <div class="info-card card" [appScrollReveal]="120">
+          @for (item of infoItems; track item.label) {
+            <div class="info-row">
+              <span class="material-icons-round info-icon">{{ item.icon }}</span>
+              <div class="info-text">
+                <span class="info-label">{{ item.label }}</span>
+                <span class="info-value" [class.highlight]="item.highlight">{{ item.value }}</span>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="stats-grid">
+          @for (stat of stats; track stat.label; let i = $index) {
+            <div class="stat-card card" [appScrollReveal]="220 + i * 80">
+              <span class="material-icons-round stat-icon">{{ stat.icon }}</span>
+              <span class="stat-value">{{ stat.value }}</span>
+              <span class="stat-label">{{ stat.label }}</span>
+            </div>
+          }
+        </div>
+
+      </div>
+
+    </div><!-- /about-grid -->
+  </div>
+</div>

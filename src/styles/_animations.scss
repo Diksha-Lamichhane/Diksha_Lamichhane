@@ -1,0 +1,100 @@
+// ─── Scroll Animation Base State ────────────────────────────────────────────
+
+// Elements with these classes start invisible and animate in when .is-visible is added
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+
+  &.from-bottom {
+    transform: translateY(40px);
+  }
+
+  &.from-left {
+    transform: translateX(-40px);
+  }
+
+  &.from-right {
+    transform: translateX(40px);
+  }
+
+  &.from-top {
+    transform: translateY(-40px);
+  }
+
+  &.scale-up {
+    transform: scale(0.92);
+  }
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Stagger delay helpers
+@for $i from 1 through 10 {
+  $ms: $i * 100ms;
+  .delay-#{$i} {
+    transition-delay: $ms !important;
+  }
+}
+
+// ─── Loading Screen ──────────────────────────────────────────────────────────
+
+@keyframes loadingPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+@keyframes loadingFadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; }
+}
+
+// ─── Typing Cursor ───────────────────────────────────────────────────────────
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: var(--color-accent);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+// ─── Float animation (subtle, for hero decoration) ──────────────────────────
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+// ─── Gradient text ───────────────────────────────────────────────────────────
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light) 50%, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ─── Section transition ──────────────────────────────────────────────────────
+
+.section-enter {
+  animation: fadeInUp 0.7s ease-out both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,73 @@
+<header class="navbar" [class.scrolled]="isScrolled()">
+  <div class="container nav-inner">
+
+    <!-- Logo -->
+    <button class="logo" (click)="goHome()" aria-label="Go to top">
+      <span class="logo-mark">DL</span>
+      <span class="logo-text">Diksha Lamichhane</span>
+    </button>
+
+    <!-- Desktop Navigation -->
+    <nav class="nav-links" aria-label="Main navigation">
+      @for (item of navItems; track item.id) {
+        <button
+          class="nav-link"
+          [class.active]="activeSection() === item.id"
+          (click)="navigateTo(item.id)"
+        >
+          {{ item.label }}
+        </button>
+      }
+    </nav>
+
+    <!-- Right Controls -->
+    <div class="nav-controls">
+      <button
+        class="icon-btn theme-btn"
+        (click)="toggleTheme()"
+        [title]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+        aria-label="Toggle color theme"
+      >
+        <span class="material-icons-round">
+          {{ isDark() ? 'light_mode' : 'dark_mode' }}
+        </span>
+      </button>
+
+      <button
+        class="hamburger"
+        (click)="toggleMobileMenu()"
+        [class.open]="mobileMenuOpen()"
+        [attr.aria-expanded]="mobileMenuOpen()"
+        aria-label="Toggle mobile menu"
+        aria-controls="mobile-menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu (outside header so it can go full height) -->
+<div
+  id="mobile-menu"
+  class="mobile-menu"
+  [class.open]="mobileMenuOpen()"
+  role="dialog"
+  aria-label="Mobile navigation"
+>
+  <nav>
+    @for (item of navItems; track item.id; let i = $index) {
+      <button
+        class="mobile-nav-link"
+        [class.active]="activeSection() === item.id"
+        [style.transition-delay]="mobileMenuOpen() ? (i * 55) + 'ms' : '0ms'"
+        (click)="navigateTo(item.id)"
+      >
+        <span class="mobile-link-num">0{{ i + 1 }}</span>
+        {{ item.label }}
+      </button>
+    }
+  </nav>
+</div>

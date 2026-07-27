@@ -1,0 +1,81 @@
+<div class="section section-alt">
+  <div class="container">
+
+    <div class="section-header" [appScrollReveal]="0">
+      <span class="section-label">Where I've Worked</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="timeline">
+      @for (job of experience; track job.id; let i = $index) {
+        <article class="timeline-item" [appScrollReveal]="i * 120">
+
+          <!-- Timeline dot + line -->
+          <div class="timeline-marker" aria-hidden="true">
+            <div class="timeline-dot" [class.current]="job.current"></div>
+            @if (i < experience.length - 1) {
+              <div class="timeline-line"></div>
+            }
+          </div>
+
+          <!-- Content -->
+          <div class="timeline-body">
+
+            <div class="job-header">
+              <div class="job-title-wrap">
+                <h3 class="job-role">{{ job.role }}</h3>
+                @if (job.current) {
+                  <span class="current-badge">Current</span>
+                }
+              </div>
+              <div class="job-meta">
+                <span class="job-company">
+                  @if (job.companyUrl) {
+                    <a [href]="job.companyUrl" target="_blank" rel="noopener">{{ job.company }}</a>
+                  } @else {
+                    {{ job.company }}
+                  }
+                </span>
+                <span class="job-sep" aria-hidden="true">·</span>
+                <span class="job-dates">{{ job.startDate }} – {{ job.endDate }}</span>
+                <span class="job-sep" aria-hidden="true">·</span>
+                <span class="job-location">
+                  <span class="material-icons-round" style="font-size: 0.875rem;">location_on</span>
+                  {{ job.location }}
+                </span>
+              </div>
+            </div>
+
+            <p class="job-summary">{{ job.summary }}</p>
+
+            <ul class="responsibility-list">
+              @for (resp of job.responsibilities; track $index) {
+                <li>{{ resp }}</li>
+              }
+            </ul>
+
+            @if (job.achievements?.length) {
+              <div class="job-achievements">
+                @for (ach of job.achievements; track $index) {
+                  <div class="achievement-item">
+                    <span class="material-icons-round">emoji_events</span>
+                    <span>{{ ach }}</span>
+                  </div>
+                }
+              </div>
+            }
+
+            <div class="job-tech-tags">
+              @for (tech of job.technologies; track tech) {
+                <span class="tech-tag">{{ tech }}</span>
+              }
+            </div>
+
+          </div>
+        </article>
+      }
+    </div>
+
+  </div>
+</div>

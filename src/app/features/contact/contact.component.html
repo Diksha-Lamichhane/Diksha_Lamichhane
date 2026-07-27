@@ -1,0 +1,132 @@
+<div class="section section-alt">
+  <div class="container">
+
+    <div class="section-header centered" [appScrollReveal]="0">
+      <span class="section-label">Get In Touch</span>
+      <h2 class="section-title">Contact Me</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">
+        Have an opportunity or want to collaborate? I'd love to hear from you.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- ── Left: Info ───────────────────────────────── -->
+      <div class="contact-info" [appScrollReveal]="100">
+
+        <p class="contact-intro">
+          I'm currently open to new opportunities — full-time roles, contract work, or interesting side projects.
+          The best way to reach me is via email or LinkedIn.
+        </p>
+
+        <ul class="contact-links">
+          @for (link of contactLinks; track link.label) {
+            <li>
+              @if (link.href) {
+                <a [href]="link.href" target="_blank" rel="noopener noreferrer" class="contact-link">
+                  <span class="contact-link-icon">
+                    <span class="material-icons-round">{{ link.icon }}</span>
+                  </span>
+                  <div class="contact-link-text">
+                    <span class="contact-link-label">{{ link.label }}</span>
+                    <span class="contact-link-value">{{ link.value }}</span>
+                  </div>
+                  <span class="material-icons-round contact-link-arrow">arrow_forward</span>
+                </a>
+              } @else {
+                <div class="contact-link contact-link-static">
+                  <span class="contact-link-icon">
+                    <span class="material-icons-round">{{ link.icon }}</span>
+                  </span>
+                  <div class="contact-link-text">
+                    <span class="contact-link-label">{{ link.label }}</span>
+                    <span class="contact-link-value">{{ link.value }}</span>
+                  </div>
+                </div>
+              }
+            </li>
+          }
+        </ul>
+
+        <div class="availability-note">
+          <span class="material-icons-round">check_circle</span>
+          <span>Available for remote and on-site roles in Kathmandu</span>
+        </div>
+
+      </div>
+
+      <!-- ── Right: Form ──────────────────────────────── -->
+      <div class="contact-form-wrap" [appScrollReveal]="200">
+
+        @if (submitted()) {
+          <div class="success-message">
+            <span class="material-icons-round success-icon">check_circle</span>
+            <h3>Message Sent!</h3>
+            <p>Your email client should have opened. I'll get back to you soon.</p>
+          </div>
+        } @else {
+          <form class="contact-form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
+
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Your Name</mat-label>
+                <input
+                  matInput
+                  name="name"
+                  [(ngModel)]="form.name"
+                  required
+                  placeholder=""
+                  autocomplete="name"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Email Address</mat-label>
+                <input
+                  matInput
+                  type="email"
+                  name="email"
+                  [(ngModel)]="form.email"
+                  required
+                  placeholder=""
+                  autocomplete="email"
+                />
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="form-field full">
+              <mat-label>Subject</mat-label>
+              <input
+                matInput
+                name="subject"
+                [(ngModel)]="form.subject"
+                placeholder=""
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field full">
+              <mat-label>Message</mat-label>
+              <textarea
+                matInput
+                name="message"
+                [(ngModel)]="form.message"
+                required
+                rows="5"
+                placeholder=""
+              ></textarea>
+            </mat-form-field>
+
+            <button type="submit" class="btn btn-submit" [disabled]="!contactForm.valid">
+              <span class="material-icons-round">send</span>
+              Send Message
+            </button>
+
+          </form>
+        }
+
+      </div>
+
+    </div><!-- /contact-grid -->
+  </div>
+</div>

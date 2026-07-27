@@ -1,0 +1,46 @@
+<div class="section">
+  <div class="container">
+
+    <div class="section-header centered" [appScrollReveal]="0">
+      <span class="section-label">What I Use</span>
+      <h2 class="section-title">Skills &amp; Technologies</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">
+        A full-stack skill set built over 4+ years of shipping real products.
+      </p>
+    </div>
+
+    <div class="skills-grid">
+      @for (group of skillGroups; track group.category; let i = $index) {
+        <div class="skill-card card" [appScrollReveal]="i * 100">
+          <div class="skill-card-header">
+            <div class="skill-icon-wrap">
+              <span class="material-icons-round">{{ group.icon }}</span>
+            </div>
+            <h3 class="skill-category">{{ group.label }}</h3>
+          </div>
+          <ul class="skill-list">
+            @for (skill of group.skills; track skill.name) {
+              <li class="skill-item">
+                <span class="skill-name">{{ skill.name }}</span>
+                <span class="skill-dots" [attr.aria-label]="levelLabel(skill.level)">
+                  @for (filled of levelDots(skill.level); track $index) {
+                    <span class="dot" [class.filled]="filled"></span>
+                  }
+                </span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+
+    <!-- Legend -->
+    <div class="skills-legend" [appScrollReveal]="600">
+      <span class="legend-item"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span> Expert</span>
+      <span class="legend-item"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span> Advanced</span>
+      <span class="legend-item"><span class="dot filled"></span><span class="dot"></span><span class="dot"></span> Intermediate</span>
+    </div>
+
+  </div>
+</div>

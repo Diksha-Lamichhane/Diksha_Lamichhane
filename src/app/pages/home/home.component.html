@@ -1,0 +1,19 @@
+@if (showLoading()) {
+  <app-loading (loaded)="onLoaded()" />
+}
+
+<app-navbar />
+
+<main id="main-content">
+  <section id="hero">     <app-hero />         </section>
+  <section id="about">    <app-about />        </section>
+  <section id="skills">   <app-skills />       </section>
+  <section id="experience"><app-experience />  </section>
+  <section id="projects"> <app-projects />     </section>
+  <section id="education"><app-education />    </section>
+  <section id="achievements"><app-achievements /></section>
+  <section id="contact">  <app-contact />      </section>
+</main>
+
+<app-footer />
+<app-scroll-top />
