@@ -75,7 +75,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/diksha-portfolio/",
+            "baseHref": "/diksha-lamichhane/",
             "branch": "gh-pages",
             "name": "Diksha Lamichhane",
             "email": "lamichhanediksha17@gmail.com"
